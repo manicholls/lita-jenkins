@@ -26,7 +26,11 @@ module Lita
       def jenkins_build(response)
         if job = jobs[response.matches.last.last.to_i - 1]
           url    = Lita.config.handlers.jenkins.url
-          path   = URI::encode "#{url}/job/#{job['name']}/build"
+          if api_key = Lita.config.handlers.jenkins.api_key
+             path = URI::encode "#{url}/job/#{job['name']}/build?token=#{api_key}"
+          else
+             path   = URI::encode "#{url}/job/#{job['name']}/build"
+          end
 
           http_resp = http.post(path) do |req|
             req.headers = headers

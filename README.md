@@ -27,9 +27,12 @@ gem "lita-jenkins"
 ``` ruby
 Lita.configure do |config|
   config.handlers.jenkins.url  = "http://test.com"
-  config.handlers.jenkins.auth = "user1:sekret"
+  config.handlers.jenkins.auth = "user1:sekret"   
+  config.handlers.jenkins.api_key = "6cae34299da4d34eb6f90c9a7a11735f"   
 end
 ```
+
+Configure the API Key if you do not wish to use a username/password.  You do not need to configure both.
 
 ## Usage
 
